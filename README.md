@@ -12,6 +12,8 @@ To find which stock had the most return for the request year, we first asked the
 ![Picture2](https://user-images.githubusercontent.com/26393180/148663662-ddcb77bc-06be-4e97-8cf8-4bf6058f03e6.png)
 
 To calculate the Total Daily Volumes and Returns for each stock, the below code was used to perform the calculation for the requested year.
+
+![Picture5](https://user-images.githubusercontent.com/26393180/148663707-d9df78ba-d266-4e8b-8447-1da69969ee75.png)
  
 The results of the analysis were added to the created data table and are presented below. The return column was then color coded based on if the return from the start of the year to the end of the year was higher (green) or lower (red).
 ![Picture3](https://user-images.githubusercontent.com/26393180/148663689-3a4fb0b0-676c-46b7-b256-48d2c8e0e453.png)
