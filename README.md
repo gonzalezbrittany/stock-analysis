@@ -25,11 +25,8 @@ Our analysis shows that in the year 2017, the ticker DQ had the most return at t
 #### Run Time analysis
 After confirming our macro works correctly and analyzing the results, the code was refactored to see if we can reduce the run time for the code. The code was edited to allow the data to be looped through one time instead of multiple times. To allow this, we created a “tickerIndex” variable and created output arrays prior to the data rows being analyzed. After running the macro, the analyzed data table results were compared to the original data table results to ensure the edited formulas ran correctly. The output below shows the run time results for the 2018 data for both the original code and refactored code.
 
-        
-2017 Original Macro Code Run Time                    2017 Refactored Macro Code Run Time
 
-          
-2018 Original Macro Code Run Time                    2018 Refactored Macro Code Run Time
+![Screenshot 2022-01-08 174537](https://user-images.githubusercontent.com/26393180/148663730-18a26d28-adc7-444a-9d77-a26accf700e1.png)
 
 The run times displayed above show that by refactoring the data so the code loops through one time instead of multiple, the run time was reduced. 
 
