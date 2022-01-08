@@ -37,3 +37,130 @@ Refactoring a code can be beneficial when it comes to data analysis. The first v
 #### Disadvantaged of refactoring code
 Even though there are benefits to refactoring code, there are also disadvantages as well. When looking for a way to refactor code, there is always the possibility that the original code is the cleanest and simplest version possible. It may be a waste of time to try and simplify it further. There is also always the chance that it may not be beneficial to take the time to try and refactor the data. For this analysis we were analyzing a small dataset and were able to refactor the code. But, in doing so the run time was only able to be reduced by a few tenth of a second. Taking time to factor code for a large dataset could substantially reduce the run time but for this smaller dataset it is not very beneficial.  
 
+
+
+Sub AllStocksAnalysisRefactored()
+    'Timer start and end time variables are created
+    Dim startTime As Single
+    Dim endTime  As Single
+    
+    'User input box is created asking what years data the user would like this module to analysis
+    yearValue = InputBox("What year would you like to run the analysis on?")
+
+    'Start time is recorded
+    startTime = Timer
+    
+    'Format the output sheet on All Stocks Analysis worksheet
+    Worksheets("All Stocks Analysis").Activate
+    
+    Range("A1").Value = "All Stocks (" + yearValue + ")"
+    
+    'Create a header row
+    Cells(3, 1).Value = "Ticker"
+    Cells(3, 2).Value = "Total Daily Volume"
+    Cells(3, 3).Value = "Return"
+
+    'Initialize array of all tickers
+    Dim tickers(12) As String
+    
+    tickers(0) = "AY"
+    tickers(1) = "CSIQ"
+    tickers(2) = "DQ"
+    tickers(3) = "ENPH"
+    tickers(4) = "FSLR"
+    tickers(5) = "HASI"
+    tickers(6) = "JKS"
+    tickers(7) = "RUN"
+    tickers(8) = "SEDG"
+    tickers(9) = "SPWR"
+    tickers(10) = "TERP"
+    tickers(11) = "VSLR"
+    
+    'Activate data worksheet
+    Worksheets(yearValue).Activate
+    
+    'Get the number of rows to loop over
+    RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    
+    'Create a ticker Index
+
+        tickerIndex = 0
+
+    'Create three output arrays
+    Dim tickerVolumes(12) As Long
+    Dim tickerStartingPrices(12) As Single
+    Dim tickerEndingPrices(12) As Single
+
+    
+    'a for loop is created to initialize the tickerVolumes to zero.
+        For i = 0 To 11
+            tickerVolumes(i) = 0
+  
+        Next i
+            
+        
+    'A for loop is used to look over all the rows in the spreadsheet.
+    'To ensure we are analyzing the data indicated by the user, the user entered year spreadsheet is reactivated
+    Worksheets(yearValue).Activate
+    For i = 2 To RowCount
+    
+        'Increase volume for current ticker
+            tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
+
+        'If then is used to check if the current row is the first row with the selected tickerIndex.
+        If Cells(i - 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
+            tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
+        End If
+        
+        'If then is used to check if the current row is the last row with the selected ticker
+        If Cells(i + 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
+        tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
+    
+        End If
+
+            'Once last row of current ticker is initiated, the ticker is increased by one
+            If Cells(i + 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
+            tickerIndex = (tickerIndex + 1)
+        End If
+    Next i
+    
+    'Created arrays are looped through to output the Ticker, Total Daily Volume, and Return.
+    For i = 0 To 11
+        
+        Worksheets("All Stocks Analysis").Activate
+        Cells(4 + i, 1).Value = tickers(i)
+        Cells(4 + i, 2).Value = tickerVolumes(i)
+        Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
+        
+    Next i
+    
+    'Formatting
+    Worksheets("All Stocks Analysis").Activate
+    Range("A3:C3").Font.FontStyle = "Bold"
+    Range("A3:C3").Borders(xlEdgeBottom).LineStyle = xlContinuous
+    Range("B4:B15").NumberFormat = "#,##0"
+    Range("C4:C15").NumberFormat = "0.0%"
+    Columns("B").AutoFit
+
+    dataRowStart = 4
+    dataRowEnd = 15
+
+    For i = dataRowStart To dataRowEnd
+        
+        If Cells(i, 3) > 0 Then
+            
+            Cells(i, 3).Interior.Color = vbGreen
+            
+        Else
+        
+            Cells(i, 3).Interior.Color = vbRed
+            
+        End If
+        
+    Next i
+    'End time is recorded, text message box shows how long it took to run module
+    endTime = Timer
+    MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)
+
+End Sub
+
