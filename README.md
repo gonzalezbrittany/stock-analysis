@@ -39,7 +39,7 @@ Even though there are benefits to refactoring code, there are also disadvantages
 
 
 
-Sub AllStocksAnalysisRefactored()
+    Sub AllStocksAnalysisRefactored()
     'Timer start and end time variables are created
     Dim startTime As Single
     Dim endTime  As Single
@@ -162,5 +162,5 @@ Sub AllStocksAnalysisRefactored()
     endTime = Timer
     MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)
 
-End Sub
+    End Sub
 
