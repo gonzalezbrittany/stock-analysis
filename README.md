@@ -14,7 +14,10 @@ To find which stock had the most return for the request year, we first asked the
 To calculate the Total Daily Volumes and Returns for each stock, the below code was used to perform the calculation for the requested year.
  
 The results of the analysis were added to the created data table and are presented below. The return column was then color coded based on if the return from the start of the year to the end of the year was higher (green) or lower (red).
-  
+![Picture3](https://user-images.githubusercontent.com/26393180/148663689-3a4fb0b0-676c-46b7-b256-48d2c8e0e453.png)
+
+![Picture4](https://user-images.githubusercontent.com/26393180/148663691-feeb09d6-f852-4515-a029-f2c87d99a668.png)
+
 Our analysis shows that in the year 2017, the ticker DQ had the most return at the end of the year while the ticker TERP had the least return at the end of the year. Our 2018 data table presents a different story, the ticker that had the most return at the end of the year was RUN while the ticker with the least was DQ.
 
 #### Run Time analysis
