@@ -8,8 +8,8 @@ After creating a macro that shows which ticker produced the most return and whic
 #### Stock Data Analysis
 To find which stock had the most return for the request year, we first asked the user what year of stock data needed to be analyzed used the code below. Once the year was indicated, a data table was created in the All stocks Analysis spreadsheet.
 	  
-
-
+![Picture1](https://user-images.githubusercontent.com/26393180/148663643-16c74ac0-add1-4ce1-b834-9f1d241f30fb.png)
+![Picture2](https://user-images.githubusercontent.com/26393180/148663662-ddcb77bc-06be-4e97-8cf8-4bf6058f03e6.png)
 
 To calculate the Total Daily Volumes and Returns for each stock, the below code was used to perform the calculation for the requested year.
  
